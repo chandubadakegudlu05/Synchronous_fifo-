@@ -23,18 +23,12 @@ as used in Sunburst Design's FIFO papers).
 ```
 synchronous-fifo/
 ├── README.md                      <- you are here
-├── LICENSE
-├── .gitignore
-├── rtl/
-│   └── synchronous_fifo.sv        <- DUT: synthesizable FIFO
-├── tb/
-│   └── synchronous_fifo_tb.sv     <- testbench
-├── sim/
-│   └── Makefile                   <- Icarus Verilog sim flow
-├── docs/
-│   └── design_doc.md              <- microarchitecture + verification notes
-└── scripts/
-    └── run_edaplayground.md       <- notes for running on EDA Playground
+└── run_edaplayground.md       <- notes for running on EDA Playground
+└── sim_output.lot             <- simulation ouput
+└── synchronous_fifo.sv        <- DUT: synthesizable FIF
+└── synchronous_fifo_tb.sv     <- testbench
+└── waveform.png               <- waveform
+
 ```
 
 ## Interface
