@@ -1,0 +1,69 @@
+Simulator : Synopsys VCS (via EDA Playground)
+Waveform  : https://www.edaplayground.com/x/GEZM
+
+--------------------------------------------------------------------------
+                 5
+ SCENARIO 1
+write_data data_in=1
+write_data data_in=10
+write_data data_in=100
+read_data data_out=x
+read_data data_out=1
+read_data data_out=10
+read_data data_out=100
+                 145
+ SCENARIO 2
+write_data data_in=1
+read_data data_out=100
+write_data data_in=2
+read_data data_out=1
+write_data data_in=4
+read_data data_out=2
+write_data data_in=8
+read_data data_out=4
+write_data data_in=16
+read_data data_out=8
+write_data data_in=32
+read_data data_out=16
+write_data data_in=64
+read_data data_out=32
+write_data data_in=128
+read_data data_out=64
+                 465
+ SCENARIO 3
+write_data data_in=1
+write_data data_in=4
+write_data data_in=16
+write_data data_in=64
+write_data data_in=256
+write_data data_in=1024
+write_data data_in=4096
+write_data data_in=16384
+read_data data_out=128
+read_data data_out=1
+read_data data_out=4
+read_data data_out=16
+read_data data_out=64
+read_data data_out=256
+read_data data_out=1024
+read_data data_out=4096
+
+$finish called from file "testbench.sv", line 20.
+$finish at simulation time                  800
+           V C S   S i m u l a t i o n   R e p o r t
+Time: 800 ns
+CPU Time:      0.540 seconds;       Data structure size:   0.0Mb
+Thu Jul 30 10:46:11 2026
+--------------------------------------------------------------------------
+
+NOTE: This log was captured using the original (pre-cleanup) testbench,
+where $display in write_data/read_data tasks executes one clock edge
+BEFORE the write/read actually completes. That is why every printed
+data_out value lags the true FIFO content by one read call (e.g. the
+very first read prints "x" instead of "1", the second prints "1" instead
+of "10", etc.) This is a display-ordering artifact only -- the waveform
+(data_out[31:0] in waveform.png) confirms the FIFO itself pushes and pops
+the correct values in the correct order, and full/empty flags toggle
+correctly. The updated testbench in tb/synchronous_fifo_tb.sv in this
+repo fixes the display ordering so printed values match actual FIFO
+output directly.
