@@ -4,7 +4,6 @@
 // Date    : 15/04/2026
 // Description:
 //   Parameterized synchronous FIFO with full/empty detection using the
-//   classic "extra MSB" pointer technique (Cummings' style).
 //------------------------------------------------------------------------
 module synchronous_fifo
   #(parameter fifo_depth = 8,
